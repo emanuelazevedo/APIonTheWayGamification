@@ -1,0 +1,1543 @@
+---
+title: API Reference
+
+language_tabs:
+- bash
+- javascript
+
+includes:
+
+search: true
+
+toc_footers:
+- <a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a>
+---
+<!-- START_INFO -->
+# Info
+
+Welcome to the generated API reference.
+
+<!-- END_INFO -->
+
+#general
+<!-- START_2b6e5a4b188cb183c7e59558cce36cb6 -->
+## Listar todos os Users
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/user");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "emanuel",
+        "email": "emanuel@mail",
+        "email_verified_at": null,
+        "avatar": "default-avatar.png",
+        "created_at": "2019-01-27 22:14:27",
+        "updated_at": "2019-01-27 22:14:27"
+    },
+    {
+        "id": 2,
+        "name": "leo",
+        "email": "leo@mail",
+        "email_verified_at": null,
+        "avatar": "default-avatar.png",
+        "created_at": "2019-01-27 22:14:27",
+        "updated_at": "2019-01-27 22:14:27"
+    }
+]
+```
+
+### HTTP Request
+`GET api/user`
+
+
+<!-- END_2b6e5a4b188cb183c7e59558cce36cb6 -->
+
+<!-- START_f0654d3f2fc63c11f5723f233cc53c83 -->
+## Criar um User
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/user"     -d "Name"="GFGYLSFSdkA8kD2d" \
+    -d "Password"="rTVAAkkXAqaYlgKa" \
+    -d "Email"="V7XyFxHMTVU5wBkM" \
+    -d "Avatar"="gnunub8bqGVC7B0b" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/user");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "Name": "GFGYLSFSdkA8kD2d",
+    "Password": "rTVAAkkXAqaYlgKa",
+    "Email": "V7XyFxHMTVU5wBkM",
+    "Avatar": "gnunub8bqGVC7B0b",
+})
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/user`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    Name | string |  required  | Nome do utilizador
+    Password | string |  required  | Password do utilizador
+    Email | string |  required  | Email do utilizador
+    Avatar | file |  optional  | Imagem de perfil do utilizador
+
+<!-- END_f0654d3f2fc63c11f5723f233cc53c83 -->
+
+<!-- START_ceec0e0b1d13d731ad96603d26bccc2f -->
+## Mostrar um User
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user/{user}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/user/{user}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "name": "emanuel",
+    "email": "emanuel@mail",
+    "email_verified_at": null,
+    "avatar": "default-avatar.png",
+    "created_at": "2019-01-27 22:14:27",
+    "updated_at": "2019-01-27 22:14:27",
+    "media": "5.0000",
+    "produtos": []
+}
+```
+
+### HTTP Request
+`GET api/user/{user}`
+
+
+<!-- END_ceec0e0b1d13d731ad96603d26bccc2f -->
+
+<!-- START_a4a2abed1e8e8cad5e6a3282812fe3f3 -->
+## Editar um User
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/user/{user}"     -d "Name"="Rpv7zHpveMT3hGW8" \
+    -d "Password"="NQqlvnSYRf3Au3KH" \
+    -d "Email"="0N4bLR6uiEJd9erv" \
+    -d "Avatar"="SLj2zNlOMyLXfPCn" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/user/{user}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "Name": "Rpv7zHpveMT3hGW8",
+    "Password": "NQqlvnSYRf3Au3KH",
+    "Email": "0N4bLR6uiEJd9erv",
+    "Avatar": "SLj2zNlOMyLXfPCn",
+})
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`PUT api/user/{user}`
+
+`PATCH api/user/{user}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    Name | string |  optional  | Nome do utilizador
+    Password | string |  optional  | Password do utilizador
+    Email | string |  optional  | Email do utilizador
+    Avatar | file |  optional  | Imagem de perfil do utilizador
+
+<!-- END_a4a2abed1e8e8cad5e6a3282812fe3f3 -->
+
+<!-- START_4bb7fb4a7501d3cb1ed21acfc3b205a9 -->
+## Remover um User
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/user/{user}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/user/{user}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`DELETE api/user/{user}`
+
+
+<!-- END_4bb7fb4a7501d3cb1ed21acfc3b205a9 -->
+
+<!-- START_32f44fe1023a6498ad01976b2aa324e9 -->
+## Listar todas as Viagens
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/viagem" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "origem": "aveiro",
+        "destino": "porto",
+        "data": "2019-12-12",
+        "horaInicio": "00:00:00",
+        "horaFim": "12:00:00",
+        "preco": 10,
+        "user_id": 1,
+        "tipo_id": 1,
+        "estado_id": 1,
+        "created_at": "2019-01-27 22:19:35",
+        "updated_at": "2019-01-27 22:19:35"
+    }
+]
+```
+
+### HTTP Request
+`GET api/viagem`
+
+
+<!-- END_32f44fe1023a6498ad01976b2aa324e9 -->
+
+<!-- START_889352be0fa4105fec64f682987d4a0d -->
+## Criar uma Viagem
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/viagem"     -d "origem"="l4bZeFX3IRDUGkVL" \
+    -d "destino"="ZvlZ1tFy4MKWV8Fs" \
+    -d "data"="PdLi0WLXA8SgWdMw" \
+    -d "horaInicio"="PDdBq2mpWaVB5NRZ" \
+    -d "horaFim"="fK7XRMY95WYCoi8l" \
+    -d "user_id"="13" \
+    -d "tipo_id"="17" \
+    -d "preco"="17" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "origem": "l4bZeFX3IRDUGkVL",
+    "destino": "ZvlZ1tFy4MKWV8Fs",
+    "data": "PdLi0WLXA8SgWdMw",
+    "horaInicio": "PDdBq2mpWaVB5NRZ",
+    "horaFim": "fK7XRMY95WYCoi8l",
+    "user_id": "13",
+    "tipo_id": "17",
+    "preco": "17",
+})
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/viagem`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    origem | string |  required  | Origem da viagem
+    destino | string |  required  | Destino da viagem
+    data | date |  required  | Data da viagem
+    horaInicio | time |  required  | Hora de inicio da viagem
+    horaFim | time |  required  | Hora de fim da viagem
+    user_id | integer |  required  | Criador da viagem
+    tipo_id | integer |  required  | Tipo de viagem
+    preco | integer |  optional  | Preco da viagem caso seja viagem criada
+
+<!-- END_889352be0fa4105fec64f682987d4a0d -->
+
+<!-- START_6925d628aa5b82b8d427f9443679a82a -->
+## Mostrar uma Viagem
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/viagem/{viagem}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem/{viagem}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "origem": "aveiro",
+    "destino": "porto",
+    "data": "2019-12-12",
+    "horaInicio": "00:00:00",
+    "horaFim": "12:00:00",
+    "preco": 10,
+    "user_id": 1,
+    "tipo_id": 1,
+    "estado_id": 1,
+    "created_at": "2019-01-27 22:19:35",
+    "updated_at": "2019-01-27 22:19:35"
+}
+```
+
+### HTTP Request
+`GET api/viagem/{viagem}`
+
+
+<!-- END_6925d628aa5b82b8d427f9443679a82a -->
+
+<!-- START_dbc331269073970ac565ffd3d05b57d6 -->
+## Editar uma Viagem
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/viagem/{viagem}"     -d "estado"="19" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem/{viagem}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "estado": "19",
+})
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`PUT api/viagem/{viagem}`
+
+`PATCH api/viagem/{viagem}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    estado | integer |  required  | id Estado da viagem
+
+<!-- END_dbc331269073970ac565ffd3d05b57d6 -->
+
+<!-- START_6b2fec7ca511aa269e8d50892a874158 -->
+## Remover uma Viagem
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/viagem/{viagem}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem/{viagem}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`DELETE api/viagem/{viagem}`
+
+
+<!-- END_6b2fec7ca511aa269e8d50892a874158 -->
+
+<!-- START_102750eaa98309a278b18c450a32339a -->
+## Pesquisar por Viagens
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/viagem/search"     -d "origem"="fhMA4qoafqVUrwto" \
+    -d "destino"="x9qJjxBEZ9aIUCYW" \
+    -d "data"="3vsYr1ZYMPikzjiU" \
+    -d "horaInicio"="5BTgBHWmCenkD6LX" \
+    -d "horaFim"="R60a9kwy74oBe9HL" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/viagem/search");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "origem": "fhMA4qoafqVUrwto",
+    "destino": "x9qJjxBEZ9aIUCYW",
+    "data": "3vsYr1ZYMPikzjiU",
+    "horaInicio": "5BTgBHWmCenkD6LX",
+    "horaFim": "R60a9kwy74oBe9HL",
+})
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/viagem/search`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    origem | string |  required  | Origem da viagem
+    destino | string |  required  | Destino da viagem
+    data | date |  required  | Data da viagem
+    horaInicio | time |  required  | Hora de inicio da viagem
+    horaFim | time |  required  | Hora de fim da viagem
+
+<!-- END_102750eaa98309a278b18c450a32339a -->
+
+<!-- START_07e7f3ae367cb99564afa991e133a461 -->
+## Listar todos os Tipos
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/tipo" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/tipo");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/tipo`
+
+
+<!-- END_07e7f3ae367cb99564afa991e133a461 -->
+
+<!-- START_80a06024db4f0d37a70ede1272c3a4d5 -->
+## Criar um novo tipo de viagem
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/tipo" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/tipo");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/tipo`
+
+
+<!-- END_80a06024db4f0d37a70ede1272c3a4d5 -->
+
+<!-- START_f695ab48314b4d59f8f1ea5d829afe74 -->
+## Mostrar todos os tipos de viagens
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/tipo/{tipo}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/tipo/{tipo}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/tipo/{tipo}`
+
+
+<!-- END_f695ab48314b4d59f8f1ea5d829afe74 -->
+
+<!-- START_208c69de33e9cfaba5c8dccd74aebec5 -->
+## Alterar um tipo de viagem
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/tipo/{tipo}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/tipo/{tipo}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`PUT api/tipo/{tipo}`
+
+`PATCH api/tipo/{tipo}`
+
+
+<!-- END_208c69de33e9cfaba5c8dccd74aebec5 -->
+
+<!-- START_7c0de1b3482697b6ea2f65ccaa6f0c49 -->
+## Remover um Tipo
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/tipo/{tipo}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/tipo/{tipo}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`DELETE api/tipo/{tipo}`
+
+
+<!-- END_7c0de1b3482697b6ea2f65ccaa6f0c49 -->
+
+<!-- START_698405941abcd460cfc5342a0228b65d -->
+## Listar todos os Produtos
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/produto" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/produto");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "nome": "cadeira",
+        "tamanho": "pequeno",
+        "foto": null,
+        "viagems_id": 1,
+        "user_id": 2,
+        "created_at": "2019-01-27 22:25:27",
+        "updated_at": "2019-01-27 22:25:27"
+    }
+]
+```
+
+### HTTP Request
+`GET api/produto`
+
+
+<!-- END_698405941abcd460cfc5342a0228b65d -->
+
+<!-- START_a2004754d7dd7a2d32cdb988d6bdfee0 -->
+## Criar um Produto
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/produto"     -d "tamanho"="dMO8zSn8CEhcVsYH" \
+    -d "nome"="gMbDRJJDFmT9RWdu" \
+    -d "viagems_id"="7" \
+    -d "user_id"="4" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/produto");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "tamanho": "dMO8zSn8CEhcVsYH",
+    "nome": "gMbDRJJDFmT9RWdu",
+    "viagems_id": "7",
+    "user_id": "4",
+})
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/produto`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    tamanho | string |  required  | Tamanho do produto
+    nome | string |  required  | Nome do produto
+    viagems_id | integer |  required  | Viagem a associar o produto
+    user_id | integer |  required  | User a associar o produto
+
+<!-- END_a2004754d7dd7a2d32cdb988d6bdfee0 -->
+
+<!-- START_7f8516938ae1193eb85c8f75ea379fe2 -->
+## Mostrar um Produto
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/produto/{produto}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/produto/{produto}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "nome": "cadeira",
+    "tamanho": "pequeno",
+    "foto": null,
+    "viagems_id": 1,
+    "user_id": 2,
+    "created_at": "2019-01-27 22:25:27",
+    "updated_at": "2019-01-27 22:25:27",
+    "viagems": {
+        "id": 1,
+        "origem": "aveiro",
+        "destino": "porto",
+        "data": "2019-12-12",
+        "horaInicio": "00:00:00",
+        "horaFim": "12:00:00",
+        "preco": 10,
+        "user_id": 1,
+        "tipo_id": 1,
+        "estado_id": 1,
+        "created_at": "2019-01-27 22:19:35",
+        "updated_at": "2019-01-27 22:19:35"
+    }
+}
+```
+
+### HTTP Request
+`GET api/produto/{produto}`
+
+
+<!-- END_7f8516938ae1193eb85c8f75ea379fe2 -->
+
+<!-- START_97abbcf4cd4371b5349a47c0220e6526 -->
+## Editar um Produto
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/produto/{produto}"     -d "tamanho"="iaDPC4t82gu6nGbF" \
+    -d "nome"="pO1zNefplz5isYcJ" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/produto/{produto}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "tamanho": "iaDPC4t82gu6nGbF",
+    "nome": "pO1zNefplz5isYcJ",
+})
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`PUT api/produto/{produto}`
+
+`PATCH api/produto/{produto}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    tamanho | string |  optional  | Tamanho do produto
+    nome | string |  optional  | Nome do produto
+
+<!-- END_97abbcf4cd4371b5349a47c0220e6526 -->
+
+<!-- START_762b93bd07a15358325db32e6e6bff1b -->
+## Remover um Produto
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/produto/{produto}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/produto/{produto}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`DELETE api/produto/{produto}`
+
+
+<!-- END_762b93bd07a15358325db32e6e6bff1b -->
+
+<!-- START_2754857aaac2f36f8ecfa54b77c3362b -->
+## Listar todas as reviews
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/review" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/review");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "nota": 3,
+        "comentario": "teste",
+        "user_id": 2,
+        "viagems_id": 1,
+        "created_at": "2019-01-27 22:27:01",
+        "updated_at": "2019-01-27 22:27:01"
+    },
+    {
+        "id": 2,
+        "nota": 5,
+        "comentario": null,
+        "user_id": 1,
+        "viagems_id": 1,
+        "created_at": "2019-01-27 22:27:14",
+        "updated_at": "2019-01-27 22:27:14"
+    }
+]
+```
+
+### HTTP Request
+`GET api/review`
+
+
+<!-- END_2754857aaac2f36f8ecfa54b77c3362b -->
+
+<!-- START_59ad28c6b6c5ba495ef823bb089bbbc3 -->
+## Criar uma nova review
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/review"     -d "nota"="4" \
+    -d "comentario"="bhczt2bCqft8pzwj" \
+    -d "user_id"="1" \
+    -d "viagems_id"="20" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/review");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+let body = JSON.stringify({
+    "nota": "4",
+    "comentario": "bhczt2bCqft8pzwj",
+    "user_id": "1",
+    "viagems_id": "20",
+})
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST api/review`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    nota | integer |  required  | Nota da viagem ou utilizador
+    comentario | string |  optional  | Comentario sobre a viagem ou utilizador
+    user_id | integer |  required  | Utilizador a ser avaliado
+    viagems_id | integer |  required  | Viagem em que se avaliou o utilizador
+
+<!-- END_59ad28c6b6c5ba495ef823bb089bbbc3 -->
+
+<!-- START_3f08780c084feca94bee4876b1b4e7fb -->
+## Mostrar uma review
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/review/{review}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/review/{review}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "nota": 3,
+    "comentario": "teste",
+    "user_id": 2,
+    "viagems_id": 1,
+    "created_at": "2019-01-27 22:27:01",
+    "updated_at": "2019-01-27 22:27:01",
+    "user": {
+        "id": 2,
+        "name": "leo",
+        "email": "leo@mail",
+        "email_verified_at": null,
+        "avatar": "default-avatar.png",
+        "created_at": "2019-01-27 22:14:27",
+        "updated_at": "2019-01-27 22:14:27"
+    }
+}
+```
+
+### HTTP Request
+`GET api/review/{review}`
+
+
+<!-- END_3f08780c084feca94bee4876b1b4e7fb -->
+
+<!-- START_057a70a03f1dfd288f5ca17033a90ed8 -->
+## Atualizar uma review
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/review/{review}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/review/{review}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`PUT api/review/{review}`
+
+`PATCH api/review/{review}`
+
+
+<!-- END_057a70a03f1dfd288f5ca17033a90ed8 -->
+
+<!-- START_97a164ea1d7bbba9951a3e709814ac5e -->
+## Remover uma review
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/review/{review}" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/review/{review}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`DELETE api/review/{review}`
+
+
+<!-- END_97a164ea1d7bbba9951a3e709814ac5e -->
+
+<!-- START_66e08d3cc8222573018fed49e121e96d -->
+## Show the application&#039;s login form.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/login" 
+```
+
+```javascript
+const url = new URL("http://localhost/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET login`
+
+
+<!-- END_66e08d3cc8222573018fed49e121e96d -->
+
+<!-- START_ba35aa39474cb98cfb31829e70eb8b74 -->
+## Handle a login request to the application.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/login" 
+```
+
+```javascript
+const url = new URL("http://localhost/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST login`
+
+
+<!-- END_ba35aa39474cb98cfb31829e70eb8b74 -->
+
+<!-- START_e65925f23b9bc6b93d9356895f29f80c -->
+## Log the user out of the application.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/logout" 
+```
+
+```javascript
+const url = new URL("http://localhost/logout");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST logout`
+
+
+<!-- END_e65925f23b9bc6b93d9356895f29f80c -->
+
+<!-- START_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+## Show the application registration form.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/register" 
+```
+
+```javascript
+const url = new URL("http://localhost/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET register`
+
+
+<!-- END_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+
+<!-- START_d7aad7b5ac127700500280d511a3db01 -->
+## Handle a registration request for the application.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/register" 
+```
+
+```javascript
+const url = new URL("http://localhost/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST register`
+
+
+<!-- END_d7aad7b5ac127700500280d511a3db01 -->
+
+<!-- START_d72797bae6d0b1f3a341ebb1f8900441 -->
+## Display the form to request a password reset link.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/password/reset" 
+```
+
+```javascript
+const url = new URL("http://localhost/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET password/reset`
+
+
+<!-- END_d72797bae6d0b1f3a341ebb1f8900441 -->
+
+<!-- START_feb40f06a93c80d742181b6ffb6b734e -->
+## Send a reset link to the given user.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/password/email" 
+```
+
+```javascript
+const url = new URL("http://localhost/password/email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST password/email`
+
+
+<!-- END_feb40f06a93c80d742181b6ffb6b734e -->
+
+<!-- START_e1605a6e5ceee9d1aeb7729216635fd7 -->
+## Display the password reset view for the given token.
+
+If no token is present, display the link request form.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/password/reset/{token}" 
+```
+
+```javascript
+const url = new URL("http://localhost/password/reset/{token}");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET password/reset/{token}`
+
+
+<!-- END_e1605a6e5ceee9d1aeb7729216635fd7 -->
+
+<!-- START_cafb407b7a846b31491f97719bb15aef -->
+## Reset the given user&#039;s password.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/password/reset" 
+```
+
+```javascript
+const url = new URL("http://localhost/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+### HTTP Request
+`POST password/reset`
+
+
+<!-- END_cafb407b7a846b31491f97719bb15aef -->
+
+<!-- START_cb859c8e84c35d7133b6a6c8eac253f8 -->
+## Show the application dashboard.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/home" 
+```
+
+```javascript
+const url = new URL("http://localhost/home");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+### HTTP Request
+`GET home`
+
+
+<!-- END_cb859c8e84c35d7133b6a6c8eac253f8 -->
+
+
