@@ -110,6 +110,8 @@ class UserController extends Controller
         }
         // dd($produtos);
         $user['media'] = $reviews;
+        //obter pontos do user, ver if para ter os 1000 em 1k
+        $user['reputation'] = $user->getPoints(true);
 
         return $user;
     }

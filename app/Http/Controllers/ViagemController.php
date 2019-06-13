@@ -11,9 +11,12 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 
 use App\Produto;
-use Image;
 
 use App\Review;
+use App\User;
+use App\Estado;
+
+use App\Gamify\Points\ViagemDone;
 
 class ViagemController extends Controller
 {
@@ -129,9 +132,14 @@ class ViagemController extends Controller
         //
         //estados sao: pendente, em viagem, concluido, avaliada
         $data = $request->only(['estado']);
-        $viagem->estado = $data['estado'];
+        $viagem->estado_id = (int)$data['estado'];
         
         $viagem->save();
+
+        //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
+        if($viagem->estado_id == 4){
+            givePoint(new ViagemDone($viagem));
+        }
 
         return Response([
           'status' => 0,
