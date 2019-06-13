@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "600f55c51678a342bcbc829ca4f1dd56",
+    "content-hash": "2b0a0b572e5c38ca19098fbc5cadd1ca",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2903,6 +2903,70 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "qcod/laravel-gamify",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qcod/laravel-gamify.git",
+                "reference": "747986ce6eec3fec8ab047d0a5d05d70b3ed27a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qcod/laravel-gamify/zipball/747986ce6eec3fec8ab047d0a5d05d70b3ed27a8",
+                "reference": "747986ce6eec3fec8ab047d0a5d05d70b3ed27a8",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4 || ~1.0",
+                "orchestra/testbench": "~3.8",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "QCod\\Gamify\\GamifyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "QCod\\Gamify\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohd Saqueib Ansari",
+                    "email": "saquibweb@gmail.com"
+                }
+            ],
+            "description": "Add gamification in laravel app with reputation point and badges support",
+            "homepage": "https://github.com/qcod/laravel-gamify",
+            "keywords": [
+                "Gamification",
+                "achivement",
+                "badge",
+                "gamify",
+                "laravel",
+                "points",
+                "qcod",
+                "reputation",
+                "reward"
+            ],
+            "time": "2019-03-17T01:21:02+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
