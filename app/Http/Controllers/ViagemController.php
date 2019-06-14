@@ -136,9 +136,13 @@ class ViagemController extends Controller
         
         $viagem->save();
 
-        //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
-        if($viagem->estado_id == 4){
-            givePoint(new ViagemDone($viagem));
+        $produtos = Produto::find($viagem->viagems_id);
+
+        foreach($produtos as $produto){
+            //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
+            if($viagem->estado_id == 4){
+                givePoint(new ViagemDone($viagem));
+            }
         }
 
         return Response([
