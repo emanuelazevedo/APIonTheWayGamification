@@ -15,6 +15,8 @@ use App\Review;
 use App\Viagem;
 use App\Produto;
 
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -50,7 +52,7 @@ class UserController extends Controller
 
     /**
      * Criar um User
-     * 
+     *
      * @bodyParam Name string required Nome do utilizador
      * @bodyParam Password string required Password do utilizador
      * @bodyParam Email string required Email do utilizador
@@ -69,7 +71,7 @@ class UserController extends Controller
             $avatar = $request->file('avatar');
             $filename = time() . "." . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save(public_path('uploads/avatar/' . $filename));
-            
+
             $data['avatar'] = $filename;
         }
 
@@ -87,7 +89,7 @@ class UserController extends Controller
 
     /**
      * Mostrar um User
-     * 
+     *
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
@@ -118,7 +120,7 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * 
+     *
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
@@ -130,7 +132,7 @@ class UserController extends Controller
 
     /**
      * Editar um User
-     * 
+     *
      * @bodyParam Name string Nome do utilizador
      * @bodyParam Password string Password do utilizador
      * @bodyParam Email string Email do utilizador
@@ -142,7 +144,7 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        
+
         $data = $request->only(['name', 'email', 'password']);
 
         $user->name = $data['name'];
@@ -153,7 +155,7 @@ class UserController extends Controller
             $avatar = $request->file('avatar');
             $filename = time() . "." . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save(public_path('uploads/avatar' . $filename));
-            
+
             $user->avatar = $filename;
         }
 
@@ -185,8 +187,18 @@ class UserController extends Controller
 
     }
 
+    public function leaderboardPoints(){
+        $users = DB::table('users')
+                ->orderBy('reputation', 'desc')
+                ->get();
+
+
+        return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
+    }
 
     public function getAuthUser(){
-      return Auth::user();
+        return Auth::user();
     }
+
+
 }

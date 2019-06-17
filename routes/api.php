@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 // Route::resource('viagem', 'ViagemController');
 
 // //Pesquisa de viagem
-// Route::post('viagem/search', 'ViagemController@search');
+Route::get('viagem/search', 'ViagemController@search')->middleware('auth:api');
 // //localhost:8000/api/viagem/aveiro/porto/2019-01-01/2019-01-01
 
 // Route::resource('tipo', 'TipoController');
@@ -27,8 +27,10 @@ use Illuminate\Http\Request;
 
 // Route::resource('review', 'ReviewController');
 
+Route::get('/user/leaderboardPoints', 'UserController@leaderboardPoints')->middleware('auth:api');
+
 Route::group(['middleware' => ['json.response']], function () {
-    
+
     Route::post('/login', 'AuthenticationController@login');
 
     // Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -37,9 +39,11 @@ Route::group(['middleware' => ['json.response']], function () {
 
     Route::middleware('auth:api')->resource('/user', 'UserController');
 
+    // Route::middleware('auth:api')->get('/user/leaderboardPoints', 'UserController@leaderboardPoints');
+
     Route::middleware('auth:api')->resource('/viagem', 'ViagemController');
 
-    Route::middleware('auth:api')->get('/viagem/search', 'ViagemController@search');
+    // Route::middleware('auth:api')->get('/viagem/search', 'ViagemController@search');
     //localhost:8000/api/viagem/aveiro/porto/2019-01-01/2019-01-01
 
     Route::middleware('auth:api')->resource('/tipo', 'TipoController');
@@ -52,3 +56,4 @@ Route::group(['middleware' => ['json.response']], function () {
         Route::get('/logout', 'AuthenticationController@logout');
     });
 });
+
