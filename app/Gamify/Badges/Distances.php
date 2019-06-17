@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Gamify\Badges;
+
+use QCod\Gamify\BadgeType;
+
+class Distances extends BadgeType
+{
+    /**
+     * Description for badge
+     *
+     * @var string
+     */
+    protected $description = '';
+
+    /**
+     * Check is user qualifies for badge
+     *
+     * @param $user
+     * @return bool
+     */
+    public function qualifier($user)
+    {
+        dd($user);
+
+        //return $user->getPoints() >= 1000;
+    }
+}

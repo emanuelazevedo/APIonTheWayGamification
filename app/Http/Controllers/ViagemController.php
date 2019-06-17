@@ -133,10 +133,9 @@ class ViagemController extends Controller
         //estados sao: pendente, em viagem, concluido, avaliada
         $data = $request->only(['estado']);
         $viagem->estado_id = (int)$data['estado'];
-        
-        $viagem->save();
 
-        $produtos = Produto::find($viagem->viagems_id);
+        
+        $produtos = Produto::where('viagems_id', $viagem['id'])->get();
 
         foreach($produtos as $produto){
             //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
@@ -144,6 +143,11 @@ class ViagemController extends Controller
                 givePoint(new ViagemDone($viagem));
             }
         }
+
+        $viagem->save();
+
+
+        
 
         return Response([
           'status' => 0,
