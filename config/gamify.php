@@ -33,5 +33,5 @@ return [
     ],
 
     // Default level
-    'badge_default_level' => 0
+    'badge_default_level' => 1
 ];

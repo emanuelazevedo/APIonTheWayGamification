@@ -11,7 +11,7 @@ class FirstTrip extends BadgeType
      *
      * @var string
      */
-    protected $description = '';
+    protected $description = 'Crachá referente à primeira viagem do condutor';
 
     /**
      * Check is user qualifies for badge

@@ -16,7 +16,10 @@ use App\Review;
 use App\User;
 use App\Estado;
 
+use vendor\qcod\src\Badge;
+
 use App\Gamify\Points\ViagemDone;
+use App\Gamify\Badges\FirstTrip;
 
 class ViagemController extends Controller
 {
@@ -140,14 +143,12 @@ class ViagemController extends Controller
         foreach($produtos as $produto){
             //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
             if($viagem->estado_id == 4){
+                //se for a primeira viagem dá crachá ao user
                 givePoint(new ViagemDone($viagem));
             }
         }
 
         $viagem->save();
-
-
-        
 
         return Response([
           'status' => 0,

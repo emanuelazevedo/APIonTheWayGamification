@@ -21,6 +21,7 @@ class Explorer extends BadgeType
      */
     public function qualifier($user)
     {
-        return $user->getPoints() >= 1000;
+        $viagem = Viagem::where('user_id', $user->id)->get();
+        // return $user->getPoints() >= 1000;
     }
 }
