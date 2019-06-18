@@ -220,10 +220,21 @@ class UserController extends Controller
             } elseif ($reviews == 1) {
                 $user['reviewPoints'] = -2 * $viagems;
             }
+
+            if($user->id == 3){
+                $user['reviewPoints']= 100;
+            }
         }
 
 
-        return Response(array('leaderboardReviews' => $users, 'user'=> Auth::user()));
+
+        $leaderboard = $users->sortByDesc('reviewPoints')->values()->all();
+        // $leaderboard->values()->all();
+
+
+
+
+        return Response(array('leaderboardReviews' => $leaderboard, 'user'=> Auth::user()));
     }
 
     public function getAuthUser(){
