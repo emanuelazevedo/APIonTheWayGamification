@@ -192,7 +192,7 @@ class UserController extends Controller
                 ->orderBy('reputation', 'desc')
                 ->get();
 
-
+        // tentar ver se continuo isto no frontend
         return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
     }
 
