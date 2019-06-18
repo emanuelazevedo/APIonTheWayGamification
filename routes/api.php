@@ -29,6 +29,8 @@ Route::get('viagem/search', 'ViagemController@search')->middleware('auth:api');
 
 Route::get('/user/leaderboardPoints', 'UserController@leaderboardPoints')->middleware('auth:api');
 
+Route::get('/user/leaderboardReviews', 'UserController@leaderboardReviews')->middleware('auth:api');
+
 Route::group(['middleware' => ['json.response']], function () {
 
     Route::post('/login', 'AuthenticationController@login');

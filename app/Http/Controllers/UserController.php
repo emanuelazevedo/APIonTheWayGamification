@@ -189,8 +189,8 @@ class UserController extends Controller
 
     public function leaderboardPoints(){
         $users = DB::table('users')
-                ->orderBy('reputation', 'desc')
-                ->get();
+            ->orderBy('reputation', 'desc')
+            ->get();
 
         // tentar ver se continuo isto no frontend
         return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
@@ -201,7 +201,25 @@ class UserController extends Controller
 
         foreach($users as $user){
             $reviews = Review::where('user_id', $user['id'])->avg('nota');
+
             $user['review'] = $reviews;
+
+            $viagems = DB::table('viagems')
+                ->where('user_id', $user->id)
+                ->where('estado_id', 4)
+                ->count();
+
+            if($reviews == 5) {
+                $user['reviewPoints'] = 3 * $viagems;
+            } elseif ($reviews == 4) {
+                $user['reviewPoints'] = 2 * $viagems;
+            } elseif ($reviews == 3) {
+                $user['reviewPoints'] = $viagems;
+            } elseif ($reviews == 2) {
+                $user['reviewPoints'] = -1 * $viagems;
+            } elseif ($reviews == 1) {
+                $user['reviewPoints'] = -2 * $viagems;
+            }
         }
 
 
