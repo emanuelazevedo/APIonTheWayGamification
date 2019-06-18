@@ -196,6 +196,18 @@ class UserController extends Controller
         return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
     }
 
+    public function leaderboardReviews(){
+        $users = User::all();
+
+        foreach($users as $user){
+            $reviews = Review::where('user_id', $user['id'])->avg('nota');
+            $user['review'] = $reviews;
+        }
+
+
+        return Response(array('leaderboardReviews' => $users, 'user'=> Auth::user()));
+    }
+
     public function getAuthUser(){
         return Auth::user();
     }
