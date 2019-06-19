@@ -7,37 +7,44 @@ use Illuminate\Http\Request;
 use Lcobucci\JWT\Parser;
 use App\User;
 
+use App\Http\Requests\UserCreateRequest;
+
+use Illuminate\Support\Facades\Hash;
+
 class AuthenticationController extends Controller
 {
 
-    public function register (Request $request) {
+    public function register (UserCreateRequest $request)
+    {
+        //
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    
-        if ($validator->fails())
-        {
-            return response(['errors'=>$validator->errors()->all()], 422);
+        $data = $request->only(['name', 'email', 'password']);
+
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . "." . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('uploads/avatar/' . $filename));
+
+            $data['avatar'] = $filename;
         }
-    
-        $request['password']=Hash::make($request['password']);
-        $user = User::create($request->toArray());
-    
-        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-        $response = ['token' => $token];
-    
-        return response($response, 200);
-    
+
+        $data['password'] = Hash::make($data['password']);
+
+        $user = User::create($data);
+        return Response([
+          'status' => 0,
+          'data' => $user,
+          'msg' => 'ok'
+        ], 200);
+
     }
 
     public function login(Request $request) {
         $user = User::where('email', $request->email)->first();
-        
+
         if ($user) {
-            if ($request->password == $user->password) {
+            // if ($request->password == $user->password) {
+            if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                 $response = ['token' => $token];
                 return response($response, 200);
@@ -49,7 +56,7 @@ class AuthenticationController extends Controller
             $response = 'User doesn\'t exist';
             return response($response, 422);
         }
-        
+
     }
     public function logout(Request $request) {
         $value = $request->bearerToken();
