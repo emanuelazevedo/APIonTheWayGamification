@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::resource('user', 'UserController');
+Route::resource('user', 'UserController');
 
 // Route::resource('viagem', 'ViagemController');
 
@@ -35,11 +35,11 @@ Route::group(['middleware' => ['json.response']], function () {
 
     Route::post('/login', 'AuthenticationController@login');
 
-    // Route::middleware('auth:api')->get('/user', function (Request $request) {
-    //     return $request->user();
-    // });
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-    Route::middleware('auth:api')->resource('/user', 'UserController');
+    // Route::middleware('auth:api')->resource('/user', 'UserController');
 
     // Route::middleware('auth:api')->get('/user/leaderboardPoints', 'UserController@leaderboardPoints');
 

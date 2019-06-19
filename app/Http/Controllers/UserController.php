@@ -230,13 +230,8 @@ class UserController extends Controller
 
         }
 
-
-
         $leaderboard = $users->sortByDesc('reviewPoints')->values()->take(10);
         // $leaderboard->values()->all();
-
-
-
 
         return Response(array('leaderboardReviews' => $leaderboard, 'user'=> Auth::user()));
     }
