@@ -190,7 +190,10 @@ class UserController extends Controller
     public function leaderboardPoints(){
         $users = DB::table('users')
             ->orderBy('reputation', 'desc')
+            ->take(10)
             ->get();
+
+        // $users = $users->take(10);
 
         // tentar ver se continuo isto no frontend
         return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
@@ -224,11 +227,12 @@ class UserController extends Controller
             if($user->id == 3){
                 $user['reviewPoints']= 100;
             }
+
         }
 
 
 
-        $leaderboard = $users->sortByDesc('reviewPoints')->values()->all();
+        $leaderboard = $users->sortByDesc('reviewPoints')->values()->take(10);
         // $leaderboard->values()->all();
 
 
