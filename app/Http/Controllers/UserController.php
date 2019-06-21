@@ -188,21 +188,40 @@ class UserController extends Controller
     }
 
     public function leaderboardPoints(){
+        $allUsers = DB::table('users')
+            ->orderBy('reputation', 'desc')
+            ->get();
+
+        $authUser = Auth::user();
+
+        $aux = 0;
+
+        foreach($allUsers as $user){
+            $aux++;
+            if($user->id === $authUser->id){
+                //get index
+                $authUser['position'] = $aux;
+            }
+        }
+
         $users = DB::table('users')
             ->orderBy('reputation', 'desc')
             ->take(10)
             ->get();
 
         // $users = $users->take(10);
-
         // tentar ver se continuo isto no frontend
-        return Response(array('leaderboardPoints' => $users, 'user'=> Auth::user()));
+        return Response(array('leaderboardPoints' => $users, 'user'=> $authUser));
     }
 
     public function leaderboardReviews(){
-        $users = User::all();
+        $allUsers = User::all();
+        $authUser = Auth::user();
 
-        foreach($users as $user){
+        $aux = 0;
+
+
+        foreach($allUsers as $user){
             $reviews = Review::where('user_id', $user['id'])->avg('nota');
 
             $user['review'] = $reviews;
@@ -230,10 +249,17 @@ class UserController extends Controller
 
         }
 
-        $leaderboard = $users->sortByDesc('reviewPoints')->values()->take(10);
+        $leaderboard = $allUsers->sortByDesc('reviewPoints')->values()->take(10);
         // $leaderboard->values()->all();
+        foreach($leaderboard as $user){
+            $aux++;
+            if($user->id === $authUser->id){
+                //get index
+                $authUser['position'] = $aux;
+            }
+        }
 
-        return Response(array('leaderboardReviews' => $leaderboard, 'user'=> Auth::user()));
+        return Response(array('leaderboardReviews' => $leaderboard, 'user'=> $authUser));
     }
 
     public function getAuthUser(){
