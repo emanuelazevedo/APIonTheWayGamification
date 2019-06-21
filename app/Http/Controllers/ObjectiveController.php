@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mission;
+use App\Objective;
 use Illuminate\Http\Request;
 
-class MssionsController extends Controller
+class ObjectiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,15 +36,28 @@ class MssionsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $mission = Mission::find(rand(1, 10));
+        $user = Auth::user();
+
+        $data= [false, $user->id, $mission->id];
+
+        $objective = Objective::create($data);
+
+        return Response([
+            'status' => 0,
+            'data' => $objective,
+            'msg' => 'ok'
+          ], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mission  $mission
+     * @param  \App\Objective  $objective
      * @return \Illuminate\Http\Response
      */
-    public function show(Mission $mission)
+    public function show(Objective $objective)
     {
         //
     }
@@ -52,10 +65,10 @@ class MssionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mission  $mission
+     * @param  \App\Objective  $objective
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mission $mission)
+    public function edit(Objective $objective)
     {
         //
     }
@@ -64,21 +77,22 @@ class MssionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mission  $mission
+     * @param  \App\Objective  $objective
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mission $mission)
+    public function update(Request $request, Objective $objective)
     {
         //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mission  $mission
+     * @param  \App\Objective  $objective
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mission $mission)
+    public function destroy(Objective $objective)
     {
         //
     }
