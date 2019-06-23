@@ -15,6 +15,7 @@ use App\Produto;
 use App\Review;
 use App\User;
 use App\Estado;
+use App\Objective;
 
 use vendor\qcod\src\Badge;
 
@@ -25,7 +26,7 @@ class ViagemController extends Controller
 {
     /**
      * Listar todas as Viagens
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -49,7 +50,7 @@ class ViagemController extends Controller
 
     /**
      * Criar uma Viagem
-     * 
+     *
      * @bodyParam origem string required Origem da viagem
      * @bodyParam destino string required Destino da viagem
      * @bodyParam data date required Data da viagem
@@ -65,13 +66,13 @@ class ViagemController extends Controller
     public function store(ViagemCreateRequest $request)
     {
         //
-        $dataViagem = $request->only(['origem', 'destino', 'data', 'horaInicio', 'horaFim', 'user_id', 'tipo_id', 'preco']);
+        $dataViagem = $request->only(['origem', 'destino', 'data', 'horaInicio', 'horaFim', 'tipo_id', 'preco']);
         $dataViagem['estado_id'] = 1;
-        
+        $dataViagem['user_id'] = Auth::user()->id;
 
         // se for viagem criada
         if($request->tipo_id == 1){
-            
+
             $viagem = Viagem::create($dataViagem);
             return Response([
                 'status' => 0,
@@ -79,7 +80,7 @@ class ViagemController extends Controller
                 'msg' => 'ok'
                 ], 200);
         }
-        
+
 
     }
 
@@ -93,11 +94,11 @@ class ViagemController extends Controller
     {
         //
         $viagem->user;
-        
+
         $user = $viagem['user']['id'];
         $reviews = Review::where('user_id', $user)->avg('nota');
         $viagem['user']['nota'] = $reviews;
-        
+
         $viagensFin = Viagem::where('user_id', $user)
                     ->where('estado_id', 3)
                     ->orWhere('estado_id', 4)
@@ -123,7 +124,7 @@ class ViagemController extends Controller
 
     /**
      * Editar uma Viagem
-     * 
+     *
      * @bodyParam estado integer required id Estado da viagem
      *
      * @param  \Illuminate\Http\Request  $request
@@ -137,7 +138,7 @@ class ViagemController extends Controller
         $data = $request->only(['estado']);
         $viagem->estado_id = (int)$data['estado'];
 
-        
+
         $produtos = Produto::where('viagems_id', $viagem['id'])->get();
 
         foreach($produtos as $produto){
@@ -149,6 +150,14 @@ class ViagemController extends Controller
         }
 
         $viagem->save();
+
+        $objectives = Objective::where('user_id', Auth::user()->id)->get();
+        foreach($objectives as $objective){
+            //verifica se os objetivos ja estao cumpridos
+            if($objective['state'] == false){
+
+            }
+        }
 
         return Response([
           'status' => 0,
@@ -177,7 +186,7 @@ class ViagemController extends Controller
 
     /**
      * Pesquisar por Viagens
-     * 
+     *
      * @bodyParam origem string required Origem da viagem
      * @bodyParam destino string required Destino da viagem
      * @bodyParam data date required Data da viagem
@@ -200,23 +209,23 @@ class ViagemController extends Controller
 
         $lista = json_decode($listaViagens, true);
         $listaViagens = array();
-        
+
         foreach($lista as $viagem){
             $user = DB::table('users')
             ->where('id', $viagem['user_id'])->get();
-            
+
             $viagem['user'] = $user;
 
             $reviews = Review::where('user_id', $viagem['user_id'])->avg('nota');
             $viagem['nota'] = $reviews;
             $listaViagens[] = $viagem;
         }
-        
 
-        
+
+
 
         return Response(array('listaViagens' => $listaViagens));
     }
 
-    
+
 }

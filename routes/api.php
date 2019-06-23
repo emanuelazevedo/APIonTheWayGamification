@@ -55,6 +55,8 @@ Route::group(['middleware' => ['json.response']], function () {
 
     Route::middleware('auth:api')->resource('/review', 'ReviewController');
 
+    Route::middleware('auth:api')->resource('/objectives', 'ObjectiveController');
+
     Route::middleware('auth:api')->group(function() {
         Route::get('/logout', 'AuthenticationController@logout');
     });
