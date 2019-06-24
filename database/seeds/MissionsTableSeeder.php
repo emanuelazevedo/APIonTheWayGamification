@@ -15,26 +15,26 @@ class MissionsTableSeeder extends Seeder
         \App\Mission::create([
             'name' => 'Fazer 3 viagens',
             'xp' => 300,
-            'variable' => 'viagens',
+            'typeOfMission' => 'viagens',
             'finalResult' => 3,
         ]);
         \App\Mission::create([
             'name' => 'Fazer 1 viagens',
             'xp' => 100,
-            'variable' => 'viagens',
+            'typeOfMission' => 'viagens',
             'finalResult' => 1,
         ]);
 
         \App\Mission::create([
             'name' => 'Levar 1 produto numa viagem',
             'xp' => 100,
-            'variable' => 'produto',
+            'typeOfMission' => 'produto',
             'finalResult' => 1,
         ]);
         \App\Mission::create([
             'name' => 'Levar 3 produto numa viagem',
             'xp' => 300,
-            'variable' => 'produto',
+            'typeOfMission' => 'produto',
             'finalResult' => 3,
         ]);
 

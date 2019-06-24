@@ -16,6 +16,7 @@ use App\Review;
 use App\User;
 use App\Estado;
 use App\Objective;
+use App\Mission;
 
 use vendor\qcod\src\Badge;
 
@@ -151,12 +152,42 @@ class ViagemController extends Controller
 
         $viagem->save();
 
+        // missoes de viagens e produtos
         $objectives = Objective::where('user_id', Auth::user()->id)->get();
         foreach($objectives as $objective){
             //verifica se os objetivos ja estao cumpridos
             if($objective['state'] == false){
+                $mission = Misson::find($objective->mission_id);
+                //verificar tipo de missao e valores
+                $typeOfMission = $mission['typeOfMission'];
+                $finalResult = $mission['finalResult'];
 
+                if($typeOfMission == 'viagem'){
+                    $objective['score']+=100;
+                    if($finalResult == $myResultViagem){
+                        $objective['state'] = true;
+
+                        // adicionar pontos pela missao
+                        $xp = $mission['xp'] / 10;
+                        for($i = 0; i<$xp; $i++){
+                            givePoint(new ViagemDone($viagem));
+                        }
+                    }
+                }
+                if($typeOfMission == 'produto'){
+                    $objective['score']+=100;
+                    if($finalResult == $myResultProduto){
+                        $objective['state'] = true;
+
+                        // adicionar pontos pela missao
+                        $xp = $mission['xp'] / 10;
+                        for($i = 0; i<$xp; $i++){
+                            givePoint(new ViagemDone($viagem));
+                        }
+                    }
+                }
             }
+            $objective->save();
         }
 
         return Response([

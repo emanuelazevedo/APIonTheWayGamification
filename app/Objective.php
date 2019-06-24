@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Objective extends Model
 {
     //
-    protected $fillable = ['state', 'user_id', 'mission_id'];
+    protected $fillable = ['state', 'score' ,'user_id', 'mission_id'];
 }
