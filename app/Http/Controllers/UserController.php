@@ -187,6 +187,8 @@ class UserController extends Controller
 
     }
 
+    // TODO Enviar ao prof para verificar o codigo
+
     public function leaderboardPoints(){
         $allUsers = DB::table('users')
             ->orderBy('reputation', 'desc')

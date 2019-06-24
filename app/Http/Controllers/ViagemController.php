@@ -162,6 +162,7 @@ class ViagemController extends Controller
                 $typeOfMission = $mission['typeOfMission'];
                 $finalResult = $mission['finalResult'];
 
+                // TODO Verificar se esta parte funciona e migrar
                 if($typeOfMission == 'viagem'){
                     $objective['score']+=100;
                     if($finalResult == $myResultViagem){

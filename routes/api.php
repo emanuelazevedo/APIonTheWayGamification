@@ -55,6 +55,7 @@ Route::group(['middleware' => ['json.response']], function () {
 
     Route::middleware('auth:api')->resource('/review', 'ReviewController');
 
+    //TODO Verificar como por o schedulling e se utilizo isto
     Route::middleware('auth:api')->resource('/objectives', 'ObjectiveController');
 
     Route::middleware('auth:api')->group(function() {
