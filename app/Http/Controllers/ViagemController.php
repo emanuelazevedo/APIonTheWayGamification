@@ -141,6 +141,7 @@ class ViagemController extends Controller
 
 
         $produtos = Produto::where('viagems_id', $viagem['id'])->get();
+        $produtosCount = count($produtos);
 
         foreach($produtos as $produto){
             //dar pontos ao criador da viagem, ciclo foreach para os produtos e fazer contas
@@ -165,7 +166,7 @@ class ViagemController extends Controller
                 // TODO Verificar se esta parte funciona e migrar
                 if($typeOfMission == 'viagem'){
                     $objective['score']+=100;
-                    if($finalResult == $myResultViagem){
+                    if($finalResult == $objective['score']){
                         $objective['state'] = true;
 
                         // adicionar pontos pela missao
@@ -177,7 +178,7 @@ class ViagemController extends Controller
                 }
                 if($typeOfMission == 'produto'){
                     $objective['score']+=100;
-                    if($finalResult == $myResultProduto){
+                    if($finalResult == $objective['score']){
                         $objective['state'] = true;
 
                         // adicionar pontos pela missao
@@ -187,6 +188,20 @@ class ViagemController extends Controller
                         }
                     }
                 }
+                if($typeOfMission == 'produtoPorViagem'){
+                    $objective['score']+=100;
+                    if($finalResult == $objective['score']){
+                        $objective['state'] = true;
+
+                        // adicionar pontos pela missao
+                        $xp = $mission['xp'] / 10;
+                        for($i = 0; i<$xp; $i++){
+                            givePoint(new ViagemDone($viagem));
+                        }
+                    }
+                }
+
+
             }
             $objective->save();
         }

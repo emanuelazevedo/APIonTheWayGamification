@@ -37,16 +37,16 @@ class TipoTableSeeder extends Seeder
           'estado' => 'avaliada',
         ]);
 
-        // seed de users
-        \App\User::create([
-          'name' => 'emanuel',
-          'email' => 'emanuel@mail',
-          'password' => '123123'
-        ]);
-        \App\User::create([
-            'name' => 'leo',
-            'email' => 'leo@mail',
-            'password' => '123123'
-        ]);
+        // // seed de users
+        // \App\User::create([
+        //   'name' => 'emanuel',
+        //   'email' => 'emanuel@mail',
+        //   'password' => '123123'
+        // ]);
+        // \App\User::create([
+        //     'name' => 'leo',
+        //     'email' => 'leo@mail',
+        //     'password' => '123123'
+        // ]);
     }
 }

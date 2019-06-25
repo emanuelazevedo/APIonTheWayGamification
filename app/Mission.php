@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mission extends Model
 {
-    protected $fillable = ['name', 'xp', 'typeOfMission', 'finalResult', 'objective_id'];
+    protected $fillable = ['name', 'xp', 'typeOfMission', 'finalResult'];
 
 }

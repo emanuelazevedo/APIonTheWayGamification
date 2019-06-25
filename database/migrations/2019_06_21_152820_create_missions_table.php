@@ -15,10 +15,10 @@ class CreateMissionsTable extends Migration
     {
         Schema::create('missions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->integer('xp');
-            $table->integer('typeOfMission');
+            $table->string('typeOfMission');
             $table->integer('finalResult');
-            $table->integer('objective_id')->unsigned();
             $table->timestamps();
         });
     }

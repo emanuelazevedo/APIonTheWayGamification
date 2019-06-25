@@ -5,6 +5,11 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+
+use App\User;
+use App\Mission;
+use App\Objective;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -26,6 +31,20 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        // TODO Ter este schedulle a marcar as missoes
+
+        $schedule->call(function () {
+
+
+            $users = User::all();
+
+            foreach($users as $user){
+                $mission = Mission::find(rand(1, 6));
+                $data = ['state'=>false, 'score'=>0, 'user_id'=>$user->id, 'mission_id'=>$mission->id];
+                $objective = Objective::create($data);
+            }
+
+        })->everyMinute();
 
     }
 
