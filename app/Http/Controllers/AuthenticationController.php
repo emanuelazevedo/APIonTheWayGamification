@@ -10,6 +10,7 @@ use App\User;
 use App\Http\Requests\UserCreateRequest;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
@@ -39,31 +40,37 @@ class AuthenticationController extends Controller
 
     }
 
-    public function login(Request $request) {
+
+    public function login (Request $request) {
+
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
-            // if ($request->password == $user->password) {
+
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                 $response = ['token' => $token];
                 return response($response, 200);
             } else {
-                $response = 'Password mismatch';
+                $response = "Password missmatch";
                 return response($response, 422);
             }
+
         } else {
-            $response = 'User doesn\'t exist';
+            $response = 'User does not exist';
             return response($response, 422);
         }
 
     }
-    public function logout(Request $request) {
-        $value = $request->bearerToken();
-        $id= (new Parser())->parse($value)->getHeader('jti');
-        $token= $request->user()->tokens->find($id);
+
+
+    public function logout (Request $request) {
+
+        $token = $request->user()->token();
         $token->revoke();
-        $response = 'You have been successfully logged out!';
+
+        $response = 'You have been succesfully logged out!';
         return response($response, 200);
+
     }
 }

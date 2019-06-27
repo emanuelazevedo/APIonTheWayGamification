@@ -203,6 +203,7 @@ class ViagemController extends Controller
 
 
             }
+            // objetive é alterado para manter registo de quantos pontos o user tem
             $objective->save();
         }
 

@@ -37,6 +37,22 @@ class UserController extends Controller
         // return $users;
 
         $user = Auth::user();
+
+        $user['xp'] = $user->getPoints();
+        $level = 1;
+
+        if($user['xp']>=5000 && $user['xp']<7999){
+            $level = 2;
+        } else if($user['xp']>=8000 && $user['xp']<10999){
+            $level = 3;
+        } else if($user['xp']>=11000 && $user['xp']<13999){
+            $level = 4;
+        } else if($user['xp']>=14000){
+            $level = 5;
+        }
+
+        $user['level'] = $level;
+
         return $user;
     }
 
@@ -114,6 +130,21 @@ class UserController extends Controller
         $user['media'] = $reviews;
         //obter pontos do user, ver if para ter os 1000 em 1k
         $user['reputation'] = $user->getPoints(true);
+        $user['xp'] = $user->getPoints();
+
+        $level = 1;
+
+        if($user['xp']>=5000 && $user['xp']<7999){
+            $level = 2;
+        } else if($user['xp']>=8000 && $user['xp']<10999){
+            $level = 3;
+        } else if($user['xp']>=11000 && $user['xp']<13999){
+            $level = 4;
+        } else if($user['xp']>=14000){
+            $level = 5;
+        }
+
+        $user['level'] = $level;
 
         return $user;
     }
