@@ -18,7 +18,11 @@ class CreateProdutosTable extends Migration
 
             $table->string('nome');
 
-            $table->string('tamanho');
+            $table->integer('altura');
+
+            $table->integer('comprimento');
+
+            $table->integer('largura');
 
             $table->string('foto')->nullable();
 

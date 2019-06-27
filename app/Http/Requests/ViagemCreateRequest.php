@@ -31,9 +31,9 @@ class ViagemCreateRequest extends FormRequest
           'data' => 'required|date',
           'horaInicio' => 'required',
           'horaFim' => 'required',
-          'user_id' => 'required',
+        //   'user_id' => 'required',
           'tipo_id' => 'required',
-          
+
         ];
     }
 
@@ -55,7 +55,7 @@ class ViagemCreateRequest extends FormRequest
        'data.required' => 'Data de início é necessária',
        'horaInicio.required' => 'Hora de início é necessária',
        'horaFim.required' => 'Hora de fim é necessária',
-       'user_id.required' => 'É necessário que a viagem tenha um utilizador associado',
+    //    'user_id.required' => 'É necessário que a viagem tenha um utilizador associado',
        'tipo_id.required' => 'É necessário que a viagem tenha um tipo associado',
        'data.date' => 'Este campo é suposto ter uma data',
       //  'horaInicio.time' => 'Este campo é suposto ter uma hora',

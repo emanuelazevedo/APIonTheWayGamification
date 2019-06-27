@@ -26,11 +26,13 @@ class ProdutoCreateRequest extends FormRequest
     public function rules()
     {
       return [
-        'tamanho' => 'required',
+        'altura' => 'required',
+        'comprimento' => 'required',
+        'largura' => 'required',
         'nome' => 'required|max:50',
         'foto' => 'nullable',
         'viagems_id' => 'required',
-        'user_id' => 'required',
+        // 'user_id' => 'required',
       ];
     }
 
@@ -47,11 +49,13 @@ class ProdutoCreateRequest extends FormRequest
 
     public function messages(){
      return[
-       'tamanho.required' => 'Tamanho é necessario',
+       'altura.required' => 'Altura é necessario',
+       'comprimento.required' => 'Comprimento é necessario',
+       'largura.required' => 'Largura é necessario',
        'nome.required' => 'Nome é necessario',
        'nome.max' => 'O nome do produto é demasiado comprido',
        'viagems_id.required' => 'É preciso associar a uma viagem',
-       'user_id.required' => 'É preciso associar a um utilizador',
+    //    'user_id.required' => 'É preciso associar a um utilizador',
      ];
     }
 }

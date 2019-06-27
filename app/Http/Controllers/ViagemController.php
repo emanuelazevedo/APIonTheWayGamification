@@ -18,6 +18,8 @@ use App\Estado;
 use App\Objective;
 use App\Mission;
 
+use Auth;
+
 use vendor\qcod\src\Badge;
 
 use App\Gamify\Points\ViagemDone;
@@ -69,7 +71,9 @@ class ViagemController extends Controller
         //
         $dataViagem = $request->only(['origem', 'destino', 'data', 'horaInicio', 'horaFim', 'tipo_id', 'preco']);
         $dataViagem['estado_id'] = 1;
-        $dataViagem['user_id'] = Auth::user()->id;
+        $user = Auth::user();
+
+        $dataViagem['user_id'] = $user->id;
 
         // se for viagem criada
         if($request->tipo_id == 1){
