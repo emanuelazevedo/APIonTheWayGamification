@@ -41,15 +41,18 @@ class UserController extends Controller
         $user['xp'] = $user->getPoints();
         $level = 1;
 
-        if($user['xp']>=5000 && $user['xp']<7999){
+        // apenas 5 niveis
+        if($user['xp']>=5000 && $user['xp']<9999){
             $level = 2;
-        } else if($user['xp']>=8000 && $user['xp']<10999){
+        } else if($user['xp']>=10000 && $user['xp']<24999){
             $level = 3;
-        } else if($user['xp']>=11000 && $user['xp']<13999){
+        } else if($user['xp']>=25000 && $user['xp']<999999){
             $level = 4;
-        } else if($user['xp']>=14000){
+        } else if($user['xp']>=1000000){
             $level = 5;
         }
+
+
 
         $user['level'] = $level;
 
@@ -132,17 +135,7 @@ class UserController extends Controller
         $user['reputation'] = $user->getPoints(true);
         $user['xp'] = $user->getPoints();
 
-        $level = 1;
-
-        if($user['xp']>=5000 && $user['xp']<7999){
-            $level = 2;
-        } else if($user['xp']>=8000 && $user['xp']<10999){
-            $level = 3;
-        } else if($user['xp']>=11000 && $user['xp']<13999){
-            $level = 4;
-        } else if($user['xp']>=14000){
-            $level = 5;
-        }
+        $level = $this->experience($user['xp']);
 
         $user['level'] = $level;
 
@@ -276,7 +269,7 @@ class UserController extends Controller
                 $user['reviewPoints'] = -2 * $viagems;
             }
 
-            if($user->id == 3){
+            if($user->id == 2){
                 $user['reviewPoints']= 100;
             }
 
@@ -299,5 +292,14 @@ class UserController extends Controller
         return Auth::user();
     }
 
+    public function experience(int $xp) {
+        $a=0;
+        for($x=1; $x<$xp; $x++) {
+        //   $a += floor($x+300*pow(2, ($x/7)));
+          $a += floor(($x/5000)+sqrt(($x/10)));
+
+        }
+        return floor($a/4)+1;
+      }
 
 }
